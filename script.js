@@ -13,27 +13,52 @@ const getComputerChoice = () => {
 };
 
 const playRound = (playerSelection, cpuSelection) => {
-    const resultElement = document.getElementById("result");
+    const roundResultElement = document.getElementById("roundResult");
+    const gameResultElement = document.getElementById("gameResult");
 
     if (playerSelection === cpuSelection) {
-        resultElement.textContent = "This round is a tie";
+        roundResultElement.textContent = "This round is a tie";
     } else if (
         (playerSelection === "scissors" && cpuSelection === "rock") ||
         (playerSelection === "paper" && cpuSelection === "scissors") ||
         (playerSelection === "rock" && cpuSelection === "paper")
     ) {
         addCpuScore();
-        resultElement.textContent = `The computer has ${cpuScore} point(s), ${cpuSelection} beats ${playerSelection}.`;
-        if (cpuScore === 5) {
-            resultElement.textContent += " The computer has won the game.";
-        }
+        roundResultElement.textContent = `The computer chose ${cpuSelection}. ${cpuSelection} beats ${playerSelection}.`;
     } else {
         addPlayerScore();
-        resultElement.textContent = `You have ${playerScore} point(s), ${playerSelection} beats ${cpuSelection}.`;
-        if (playerScore === 5) {
-            resultElement.textContent += " Congratulations! You have won the game.";
-        }
+        roundResultElement.textContent = `You chose ${playerSelection}. ${playerSelection} beats ${cpuSelection}.`;
     }
+
+    if (playerScore === 5 || cpuScore === 5) {
+        endGame();
+    }
+}
+
+function endGame() {
+    const gameResultElement = document.getElementById("gameResult");
+    if (playerScore === 5) {
+        gameResultElement.textContent = "Congratulations! You have won the game.";
+    } else {
+        gameResultElement.textContent = "The computer has won the game.";
+    }
+
+    // When the player or computer reaches the score of 5, this will hide the play buttons and show the restart button
+    document.querySelectorAll('button[onclick^="play"]').forEach(btn => btn.style.display = "none");
+    document.getElementById("restartButton").style.display = "block";
+}
+
+function restartGame() {
+    playerScore = 0;
+    cpuScore = 0;
+    document.getElementById("playerScore").textContent = playerScore;
+    document.getElementById("cpuScore").textContent = cpuScore;
+    document.getElementById("roundResult").textContent = "";
+    document.getElementById("gameResult").textContent = "";
+
+    // When the restart button is clicked this will show the play buttons and hide the restart button
+    document.querySelectorAll('button[onclick^="play"]').forEach(btn => btn.style.display = "inline-block");
+    document.getElementById("restartButton").style.display = "none";
 }
 
 const play = (choice) => {
