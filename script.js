@@ -1,46 +1,65 @@
-// console.log('hello, world!');
+window.onload = function () {
+    alert("Open your console window");
+}
 
-// This is a rock, paper, scissors game for The Odin Project
+// // This is a rock, paper, scissors game for The Odin Project
 
-let cpuSelection;
-let playerSelection;
-let playerScore=0;
-let cpuScore=0;
+let playerScore = 0;
+let cpuScore = 0;
 
-myArray = ["Rock", "Paper", "Scissors"];
+const getPlayerSelection = () => {
+    while (true) {
+        const playerChoice = prompt("Enter your choice (rock, paper, or scissors):").toLowerCase();
 
-function computerPlay(){
-    return myArray[(Math.random() * myArray.length)];
+        if (['rock', 'paper', 'scissors'].includes(playerChoice)) {
+            return playerChoice;
+        } else {
+            alert("Invalid input. Please enter 'rock', 'paper', or 'scissors'.");
+        }
+    }
 };
 
-const playRound = (playerSelection,cpuSelection) => {
-    cpuSelection = computerPlay().toLowerCase();
-    playerSelection = playerSelection.toLowerCase();
+const getComputerChoice = () => {
+    const cpuOptions = ["rock", "paper", "scissors"];
+    return cpuOptions[Math.floor(Math.random() * cpuOptions.length)];
+};
+
+const playRound = (playerSelection, cpuSelection) => {
     if (playerSelection === cpuSelection) {
-        return 'The round is a tie';
-    } else if (playerSelection == "scissors" && cpuSelection == "rock") || (cpuSelection == "scissors" && playerSelection == "paper") || (cpuSelection == "paper" && playerSelection == "rock") {
-        cpuScore = ++cpuScore;
-        keepCpuScore();
-        if (cpuScore === 1) {
-            return `The computer has 1 point, ${cpuSelection} beats ${playerSelection}.`;
-        } else if (cpuScore === 2) {
-            return `The computer has 2 points, ${cpuSelection} beats ${playerSelection}.`;
-        } else if (cpuScore === 3) {
-            return `The computer has 3 points, ${cpuSelection} beats ${playerSelection}.`;
-        } else if (cpuScore === 4) {
-            return `The computer has 4 points, ${cpuSelection} beats ${playerSelection}.`;
-        } else {
-            return `The computer has 5 points, ${cpuSelection} beats ${playerSelection}. The computer has won the game.`;
+        console.log("This round is a tie");
+    } else if (
+        (playerSelection === "scissors" && cpuSelection === "rock") ||
+        (playerSelection === "paper" && cpuSelection === "scissors") ||
+        (playerSelection === "rock" && cpuSelection === "paper")
+    ) {
+        addCpuScore();
+        console.log(`The computer has ${cpuScore} point(s), ${cpuSelection} beats ${playerSelection}.`);
+        if (cpuScore === 5) {
+            console.log("The computer has won the game.");
         }
     } else {
-        playerScore = ++playerScore;
+        addPlayerScore();
+        console.log(`You have ${playerScore} point(s), ${playerSelection} beats ${cpuSelection}.`);
+        if (playerScore === 5) {
+            console.log("Congratulations! You have won the game.");
+        }
     }
 }
 
-function keepCpuScore() {
-    let cpuTotalScore = cpuScore;
+const game = () => {
+    while (playerScore < 5 && cpuScore < 5) {
+        const playerSelection = getPlayerSelection();
+        const cpuSelection = getComputerChoice();
+        playRound(playerSelection, cpuSelection);
+    }
+
+    return "Game over!";
 }
 
-function keepPlayerScore(){
-    let playterTotalScore = playerScore;
+function addCpuScore() {
+    cpuScore++;
+}
+
+function addPlayerScore() {
+    playerScore++;
 }
