@@ -13,6 +13,8 @@ h2 {
 button {
     width: 25%;
     height: 30px;
+    font-size: 1rem;
+    margin: 2px;
 }
 
 .container {
@@ -34,12 +36,19 @@ button {
     padding: 2%;
 }
 
+.player-score, .computer-score {
+    font-size: 1.5rem;
+}
+
 span#playerScore, span#cpuScore {
     margin-left: 2px;
 }
 
 #roundResult, #gameResult {
     text-align: center;
+    font-size: 1.2rem;
+    margin: 10px;
+    padding: 1%;
 }
 
 #restartButton {
