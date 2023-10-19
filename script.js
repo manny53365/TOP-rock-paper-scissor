@@ -1,7 +1,3 @@
-// window.onload = function () {
-//     alert("Open your console window");
-// }
-
 // This is a rock, paper, scissors game for The Odin Project
 
 let playerScore = 0;
