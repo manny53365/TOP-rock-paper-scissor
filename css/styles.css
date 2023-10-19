@@ -1,5 +1,51 @@
 * {
     padding: 0;
     margin: 0;
+    background-color: black;
+    color: aliceblue;
 }
 
+h2 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+button {
+    width: 25%;
+    height: 30px;
+    font-size: 1rem;
+    margin: 2px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.player-options, .scoreboard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 2%;
+}
+
+.player-score, .computer-score {
+    font-size: 1.5rem;
+}
+
+span#playerScore, span#cpuScore {
+    margin-left: 2px;
+}
+
+#roundResult, #gameResult {
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 10px;
+    padding: 1%;
+}
+
+#restartButton {
+    margin: 20px auto;
+    text-align: center;
+    align-items: center;
+}
