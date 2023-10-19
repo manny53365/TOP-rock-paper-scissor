@@ -1,4 +1,4 @@
-window.onload = function(){
+window.onload = function () {
     alert("Open your console window");
 }
 
@@ -39,6 +39,10 @@ const playRound = (playerSelection, cpuSelection) => {
         }
     } else {
         addPlayerScore();
+        console.log(`You have ${playerScore} point(s), ${playerSelection} beats ${cpuSelection}.`);
+        if (playerScore === 5) {
+            console.log("Congratulations! You have won the game.");
+        }
     }
 }
 
