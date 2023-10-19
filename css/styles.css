@@ -22,14 +22,7 @@ button {
     flex-direction: column;
 }
 
-.player-options {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    padding: 2%;
-}
-
-.scoreboard {
+.player-options, .scoreboard {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
